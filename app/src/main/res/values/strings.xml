@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">ShopG3G104</string>
+
+    // HomeActivity
+    <string name="txtHome">Shop G3 G104</string>
+    <string name="btnHome">Go home</string>
+
+    // ProductsActivity
+    <string name="txtProTitle">Products</string>
+    <string name="txtPro1">Product 1</string>
+    <string name="txtPro2">Product 2</string>
+    <string name="txtPro3">Product 3</string>
+    <string name="btnPro1">Details</string>
+    <string name="btnPro2">Details</string>
+    <string name="btnPro3">Details</string>
+
+    // ProductDetailsActivity
+    <string name="txtProName"></string>
+    <string name="txtDetPro">111</string>
+    <string name="btnDetPro">Go back</string>
+
+</resources>
