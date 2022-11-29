@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/metal_background"
     tools:context=".Home">
 
     <LinearLayout
@@ -17,23 +18,28 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/txtHome"
-            android:textSize="60dp" />
-    </LinearLayout>
+            android:textSize="60sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        tools:layout_editor_absoluteX="-125dp">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/txtHomeImage"
+            app:srcCompat="@drawable/home" />
 
-        <Button
-            android:id="@+id/btnHome"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/btnHome" />
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btnHome" />
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

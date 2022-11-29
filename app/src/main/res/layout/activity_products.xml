@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/metal_background"
     tools:context=".Products">
 
     <LinearLayout
@@ -17,7 +18,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/txtProTitle"
-            android:textSize="40dp" />
+            android:textSize="40sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,17 +33,33 @@
 
                 <ImageView
                     android:id="@+id/imgPro1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:contentDescription="@string/txtPro1"
+                    app:srcCompat="@drawable/product1" />
 
-                <TextView
-                    android:id="@+id/txtPro1"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/txtPro1" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtPro1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/txtPro1" />
+
+                    <TextView
+                        android:id="@+id/txtPriPro1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:text="@string/txtPriPro1" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/btnPro1"
@@ -60,17 +77,33 @@
 
                 <ImageView
                     android:id="@+id/imgPro2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="152sp"
+                    android:layout_height="150sp"
                     android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:contentDescription="@string/txtPro2"
+                    app:srcCompat="@drawable/product2" />
 
-                <TextView
-                    android:id="@+id/txtPro2"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/txtPro2" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtPro2"
+                        android:layout_width="115sp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/txtPro2" />
+
+                    <TextView
+                        android:id="@+id/txtPriPro2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:text="@string/txtPriPro2" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/btnPro2"
@@ -88,17 +121,34 @@
 
                 <ImageView
                     android:id="@+id/imgPro3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="154sp"
+                    android:layout_height="150sp"
                     android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:contentDescription="@string/txtPro3"
+                    app:srcCompat="@drawable/product3" />
 
-                <TextView
-                    android:id="@+id/txtPro3"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/txtPro3" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtPro3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/txtPro3"
+                        android:text="@string/txtPro3" />
+
+                    <TextView
+                        android:id="@+id/txtPriPro3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:text="@string/txtPriPro3" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/btnPro3"

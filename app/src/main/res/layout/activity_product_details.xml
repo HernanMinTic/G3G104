@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/metal_background"
     tools:context=".ProductDetails">
 
     <LinearLayout
@@ -16,7 +17,7 @@
             android:id="@+id/txtProName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:gravity="center"
             android:text="@string/txtProName" />
 
@@ -28,16 +29,31 @@
 
             <ImageView
                 android:id="@+id/imgDetPro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="300sp"
+                android:layout_height="300sp"
+                android:contentDescription="@string/txtDetPro"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/txtDetPro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:text="@string/txtDetPro" />
+
+            <TextView
+                android:id="@+id/txtPriPro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/txtPriPro" />
+
+            <TextView
+                android:id="@+id/txtDesPro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@string/txtDesPro" />
 
             <Button
                 android:id="@+id/btnDetPro"
