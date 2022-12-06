@@ -5,57 +5,44 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
-public class Products extends AppCompatActivity {
+import com.example.shopg3g104.Adapters.ProductAdapter;
+import com.example.shopg3g104.Entities.Product;
 
-    private Button btnPro1, btnPro2, btnPro3;
-    private TextView txtPro1, txtPro2, txtPro3, txtPriPro1, txtPriPro2, txtPriPro3;
+import java.util.ArrayList;
+
+public class Products extends AppCompatActivity {
+    private ListView listViewProduct;
+    private ArrayList<Product> arrayProductos;
+    private ProductAdapter productAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
 
-        btnPro1 = (Button) findViewById(R.id.btnPro1);
-        btnPro2 = (Button) findViewById(R.id.btnPro2);
-        btnPro3 = (Button) findViewById(R.id.btnPro3);
+        arrayProductos = new ArrayList<>();
+        Product producto1 = new Product(R.drawable.product1,"Apple AirPods Max", "Excellent", 500);
+        Product producto2 = new Product(R.drawable.product2,"Bose Noise Cancelling", "Great", 350);
+        Product producto3 = new Product(R.drawable.product3,"Soundcore Life Q30", "Good", 100);
 
-        txtPro1 = (TextView) findViewById(R.id.txtPro1);
-        txtPro2 = (TextView) findViewById(R.id.txtPro2);
-        txtPro3 = (TextView) findViewById(R.id.txtPro3);
-        txtPriPro1 = (TextView) findViewById(R.id.txtPriPro1);
-        txtPriPro2 = (TextView) findViewById(R.id.txtPriPro2);
-        txtPriPro3 = (TextView) findViewById(R.id.txtPriPro3);
+        arrayProductos.add(producto1);
+        arrayProductos.add(producto2);
+        arrayProductos.add(producto3);
 
-        btnPro1.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), ProductDetails.class);
-            intent.putExtra("name", txtPro1.getText().toString());
-            intent.putExtra("price", txtPriPro1.getText().toString());
-            intent.putExtra("description", "Excellent");
-            intent.putExtra("imageCode", R.drawable.product1);
-            intent.putExtra("imageCodeBlank", R.drawable.blank_image);
-            startActivity(intent);
-        });
 
-        btnPro2.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), ProductDetails.class);
-            intent.putExtra("name", txtPro2.getText().toString());
-            intent.putExtra("price", txtPriPro2.getText().toString());
-            intent.putExtra("description", "Great");
-            intent.putExtra("imageCode", R.drawable.product2);
-            intent.putExtra("imageCodeBlank", R.drawable.blank_image);
-            startActivity(intent);
-        });
+        productAdapter = new ProductAdapter(this, arrayProductos);
+        listViewProduct = (ListView) findViewById(R.id.listViewProducts);
+        listViewProduct.setAdapter(productAdapter);
 
-        btnPro3.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), ProductDetails.class);
-            intent.putExtra("name", txtPro3.getText().toString());
-            intent.putExtra("price", txtPriPro3.getText().toString());
-            intent.putExtra("description", "Good");
-            intent.putExtra("imageCode", R.drawable.product3);
-            intent.putExtra("imageCodeBlank", R.drawable.blank_image);
-            startActivity(intent);
-        });
+
+        /*btnPro1.setOnClickListener(view -> {
+
+        });*/
+
+
     }
 }
