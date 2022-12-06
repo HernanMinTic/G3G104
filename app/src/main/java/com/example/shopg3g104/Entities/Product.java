@@ -1,6 +1,8 @@
 package com.example.shopg3g104.Entities;
 
-public class Product {
+import com.example.shopg3g104.Products;
+
+public class Product extends Products {
     private int image;
     private String name;
     private String description;
