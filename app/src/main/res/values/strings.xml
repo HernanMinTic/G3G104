@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Listener</string>
 
+    // Menu
+    <string name="menuFor">Form</string>
+
     // HomeActivity
     <string name="txtHome">Listener</string>
     <string name="txtHomeImage">Turntable</string>
@@ -18,11 +21,25 @@
     <string name="txtPriPro2">$350</string>
     <string name="txtPriPro3">$100</string>
 
+    <string name="btnProTem">Details</string>
+
     // ProductDetailsActivity
-    <string name="txtProName"> </string>
+    <string name="txtNamPro"> </string>
     <string name="txtDetPro"> </string>
     <string name="txtPriPro"> </string>
     <string name="txtDesPro"> </string>
     <string name="btnDetPro">Go back</string>
+
+    // ProductFormActivity
+    <string name="txtFor">Form</string>
+    <string name="btnGet">Get</string>
+    <string name="btnDel">Delete</string>
+    <string name="btnUpd">Update</string>
+    <string name="txtNamFor">Name</string>
+    <string name="txtDesFor">Description</string>
+    <string name="txtPriFor">Price</string>
+    <string name="btnAdd">Add</string>
+
+
 
 </resources>
