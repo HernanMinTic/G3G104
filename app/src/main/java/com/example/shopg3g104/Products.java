@@ -24,6 +24,7 @@ public class Products extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
 
+        listViewProduct = (ListView) findViewById(R.id.listViewProducts);
         arrayProductos = new ArrayList<>();
         Product producto1 = new Product(R.drawable.product1,"Apple AirPods Max", "Excellent", 500);
         Product producto2 = new Product(R.drawable.product2,"Bose Noise Cancelling", "Great", 350);
@@ -35,7 +36,6 @@ public class Products extends AppCompatActivity {
 
 
         productAdapter = new ProductAdapter(this, arrayProductos);
-        listViewProduct = (ListView) findViewById(R.id.listViewProducts);
         listViewProduct.setAdapter(productAdapter);
 
 
