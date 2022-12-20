@@ -39,7 +39,6 @@ public class ProductDetails extends AppCompatActivity {
         Intent intentIn = getIntent();
         String id = intentIn.getStringExtra("id");
 
-
         txtNamPro.setText(intentIn.getStringExtra("name"));
         txtDesPro.setText(intentIn.getStringExtra("description"));
         txtPriPro.setText(String.valueOf(intentIn.getStringExtra("price")));

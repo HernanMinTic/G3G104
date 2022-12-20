@@ -54,7 +54,6 @@ public class Products extends AppCompatActivity {
             Log.e("Database", e.toString());
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
-        dbFirebase.ProductService(productService);
         productAdapter = new ProductAdapter(this, arrayProducts);
 
         listViewProducts = (ListView) findViewById(R.id.listPro);
