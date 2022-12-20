@@ -4,6 +4,14 @@
     // Menu
     <string name="menuFor">Form</string>
 
+    // Login, Register
+    <string name="txtUser">User</string>
+    <string name="txtPassword">Password</string>
+    <string name="btnSignIn">Sign in</string>
+    <string name="btnSignUp">Sign Up</string>
+    <string name="btnRegister">Register</string>
+    <string name="txtPasCon">Confirm</string>
+
     // HomeActivity
     <string name="txtHome">Listener</string>
     <string name="txtHomeImage">Turntable</string>
@@ -20,7 +28,6 @@
     <string name="txtPriPro1">$500</string>
     <string name="txtPriPro2">$350</string>
     <string name="txtPriPro3">$100</string>
-
     <string name="btnProTem">Details</string>
 
     // ProductDetailsActivity
@@ -39,7 +46,6 @@
     <string name="txtDesFor">Description</string>
     <string name="txtPriFor">Price</string>
     <string name="btnAdd">Add</string>
-
 
 
 </resources>

@@ -7,23 +7,31 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
+import com.example.shopg3g104.Entities.Product;
+import com.example.shopg3g104.Services.ProductService;
+
 public class DBHelper extends SQLiteOpenHelper {
 
     private SQLiteDatabase sqLiteDatabase;
+    private ProductService productService;
 
     public DBHelper (Context context){
         super(context, "G3G104.db", null, 1);
         sqLiteDatabase = this.getWritableDatabase();
+        productService = new ProductService();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE PRODUCTS("+
-                "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+                "id TEXT PRIMARY KEY,"+
                 "name VARCHAR,"+
-                "description VARCHAR,"+
+                "description TEXT,"+
                 "price VARCHAR,"+
-                "image BLOB"+
+                "image TEXT," +
+                "deleted TEXT," +
+                "createdAt TEXT,"+
+                "updatedAt TEXT"+
                 ")");
     }
 
@@ -33,13 +41,18 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // Metodos CRUD
-    public void insertData(String name, String description, String price, byte[] image){
-        String sql = "INSERT INTO PRODUCTS VALUES(null, ?, ?, ?, ?)";
+    public void insertData(Product product){
+        String id = product.getId();
+        String sql = "INSERT INTO PRODUCTS VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         SQLiteStatement statement = sqLiteDatabase.compileStatement(sql);
-        statement.bindString(1, name);
-        statement.bindString(2, description);
-        statement.bindString(3, price);
-        statement.bindBlob(4, image);
+        statement.bindString(1, product.getId());
+        statement.bindString(2, product.getName());
+        statement.bindString(3, product.getDescription());
+        statement.bindString(4, String.valueOf(product.getPrice()));
+        statement.bindString(5, product.getImage());
+        statement.bindString(6, String.valueOf(product.isDeleted()));
+        statement.bindString(7, productService.dateToString(product.getCreatedAt()));
+        statement.bindString(8, productService.dateToString(product.getUpdatedAt()));
         statement.executeInsert();
     }
 
@@ -54,10 +67,10 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void deleteDataById(String id){
-        sqLiteDatabase.execSQL("DELETE FROM PRODUCTS WHERE ID="+id, null);
+        sqLiteDatabase.execSQL("DELETE FROM PRODUCTS WHERE ID="+id);
     }
 
-    public void updateDataById(String id, String name, String description, String price, byte[] image){
+    public void updateDataById(String id, String name, String description, String price, String image){
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
         contentValues.put("description", description);

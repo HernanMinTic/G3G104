@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shopg3g104.Adapters.ProductAdapter;
+import com.example.shopg3g104.DB.DBFirebase;
 import com.example.shopg3g104.DB.DBHelper;
 import com.example.shopg3g104.Entities.Product;
 import com.example.shopg3g104.Services.ProductService;
@@ -24,10 +25,8 @@ import java.util.ArrayList;
 
 public class Products extends AppCompatActivity {
 
-    /*private Button btnPro1;
-    private TextView txtPro1, txtPriPro1;*/
-
     private DBHelper dbHelper;
+    private DBFirebase dbFirebase;
     private ProductService productService;
     private ListView listViewProducts;
     private ArrayList<Product> arrayProducts;
@@ -42,50 +41,26 @@ public class Products extends AppCompatActivity {
         arrayProducts = new ArrayList<>();
 
         try{
-            dbHelper = new DBHelper(this);
-            byte [] img = "".getBytes();
-            /*dbHelper.insertData("Product1", "Description1", "100", img);
-            dbHelper.insertData("Product2", "Description2", "200", img);
-            dbHelper.insertData("Product3", "Description3", "300", img);
-            dbHelper.insertData("Product4", "Description4", "400", img);
-            dbHelper.insertData("Product5", "Description5", "500", img);*/
+            //dbHelper = new DBHelper(this);
+            dbFirebase = new DBFirebase();
+
+            //byte [] img = "".getBytes();
+
             productService = new ProductService();
-            Cursor cursor = dbHelper.getData();
-            arrayProducts = productService.cursorToArray(cursor);
+            //Cursor cursor = dbHelper.getData();
+            //arrayProducts = productService.cursorToArray(cursor);
             Toast.makeText(this, "Insert OK", Toast.LENGTH_SHORT).show();
         }catch(Exception e){
             Log.e("Database", e.toString());
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
-
-
-        /*Product product1 = new Product(R.drawable.product1, "AirPods Max", "Excellent", 500);
-        Product product2 = new Product(R.drawable.product2, "Bose 700", "Great", 350);
-        Product product3 = new Product(R.drawable.product3, "Soundcore Life Q35", "Good", 100);
-
-        arrayProducts.add(product1);
-        arrayProducts.add(product2);
-        arrayProducts.add(product3);*/
-
+        dbFirebase.ProductService(productService);
         productAdapter = new ProductAdapter(this, arrayProducts);
 
         listViewProducts = (ListView) findViewById(R.id.listPro);
         listViewProducts.setAdapter(productAdapter);
 
-        /*btnPro1 = (Button) findViewById(R.id.btnPro1);
-        txtPro1 = (TextView) findViewById(R.id.txtPro1);
-        txtPriPro1 = (TextView) findViewById(R.id.txtPriPro1);
-
-        btnPro1.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), ProductDetails.class);
-            intent.putExtra("name", txtPro1.getText().toString());
-            intent.putExtra("price", txtPriPro1.getText().toString());
-            intent.putExtra("description", "Excellent");
-            intent.putExtra("imageCode", R.drawable.product1);
-            intent.putExtra("imageCodeBlank", R.drawable.blank_image);
-            startActivity(intent);
-        });*/
-
+        dbFirebase.getData(productAdapter, arrayProducts);
     }
 
     @Override

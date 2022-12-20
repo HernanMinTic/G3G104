@@ -33,22 +33,17 @@ public class ProductDetails extends AppCompatActivity {
         txtDesPro = (TextView) findViewById(R.id.txtDesPro);
         txtPriPro = (TextView) findViewById(R.id.txtPriPro);
         imgDetPro = (ImageView) findViewById(R.id.imgDetPro);
-        dbHelper = new DBHelper(this);
+        //dbHelper = new DBHelper(this);
         productService = new ProductService();
 
-        Intent intendIn = getIntent();
-        String id = intendIn.getStringExtra("id");
-        ArrayList<Product> list = productService.cursorToArray(dbHelper.getDataById(id));
-        Product product = list.get(0);
+        Intent intentIn = getIntent();
+        String id = intentIn.getStringExtra("id");
 
-        txtNamPro.setText(product.getName());
-        txtDesPro.setText(product.getDescription());
-        txtPriPro.setText(String.valueOf(product.getPrice()));
-        imgDetPro.setImageBitmap(productService.byteToBitmap(product.getImage()));
 
-        /*int imageCodeBlank = intendIn.getIntExtra("imageCodeBlank", 0);
-        int imageCode = intendIn.getIntExtra("imageCode", imageCodeBlank);
-        imgDetPro.setImageResource(imageCode);*/
+        txtNamPro.setText(intentIn.getStringExtra("name"));
+        txtDesPro.setText(intentIn.getStringExtra("description"));
+        txtPriPro.setText(String.valueOf(intentIn.getStringExtra("price")));
+        //imgDetPro.setImageBitmap(productService.byteToBitmap(product.getImage()));
 
         btnDetPro.setOnClickListener(new View.OnClickListener() {
             @Override

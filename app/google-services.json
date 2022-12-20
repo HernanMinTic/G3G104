@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "186688319197",
+    "firebase_url": "https://testg3g104-default-rtdb.firebaseio.com",
+    "project_id": "testg3g104",
+    "storage_bucket": "testg3g104.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186688319197:android:f6a14c2887b5b11a62f534",
+        "android_client_info": {
+          "package_name": "com.example.shopg3g104"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186688319197-r9tt4jcfgnndgh2faqj5003eebm6ntbq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByRusnWP4Y3kyf0s9F7K_PTF3LkHvZ248"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186688319197-r9tt4jcfgnndgh2faqj5003eebm6ntbq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
