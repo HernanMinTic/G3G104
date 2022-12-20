@@ -26,15 +26,13 @@ import java.util.Map;
 import kotlin.collections.UArraySortingKt;
 
 public class DBFirebase {
+
     private FirebaseFirestore db;
     private ProductService productService;
 
     public DBFirebase(){
         this.db = FirebaseFirestore.getInstance();
-    }
-
-    public void ProductService(ProductService productService) {
-        this.productService = productService;
+        this.productService = new ProductService();
     }
 
     public void insertData(Product prod){

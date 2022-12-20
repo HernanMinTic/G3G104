@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ProductService {
-    public ArrayList<Product> cursorToArray(Cursor cursor) {
+    /*public ArrayList<Product> cursorToArray(Cursor cursor) {
         ArrayList<Product> list = new ArrayList<>();
         if(cursor.getCount() == 0){
             return list;
@@ -37,7 +37,7 @@ public class ProductService {
             }
         }
         return list;
-    }
+    }*/
 
     /*public byte [] imageViewToByte (ImageView imageView){
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
