@@ -40,39 +40,38 @@ public class ProductAdapter  extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int position, View convertView, 
+                        ViewGroup viewGroup) {
+        View view = convertView;
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
         view = layoutInflater.inflate(R.layout.product_template, null);
 
+        Product product = arrayProductos.get(position);
 
-
+        Button btnProduct1 = (Button) view.findViewById(R.id.btnProducto);
         ImageView imageProduct1 = (ImageView) view.findViewById(R.id.imageProducto);
         TextView textNameProduct1 = (TextView) view.findViewById(R.id.textNameProducto);
         TextView textDescriptionProduct1 = (TextView) view.findViewById(R.id.textDescriptionProducto);
         TextView textPrinceProduct1 = (TextView) view.findViewById(R.id.textPrinceProducto);
 
-        Product product = arrayProductos.get(i);
-
         imageProduct1.setImageResource(product.getImage());
         textNameProduct1.setText(product.getName());
         textDescriptionProduct1.setText(product.getDescription());
-        int Col = product.getPrice() *5000;
-        int Usd = product.getPrice();
-        String prices = "Pesos: "+Col+" - "+ "USD: "+Usd;
-        textPrinceProduct1.setText(prices);
-        imageProduct1.setOnClickListener(new View.OnClickListener() {
+        textPrinceProduct1.setText(String.valueOf(product.getPrice()));
+
+        btnProduct1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context.getApplicationContext(), ProductDetails.class);
+                Intent intent = new Intent(context, ProductDetails.class);
                 intent.putExtra("name", product.getName());
                 intent.putExtra("description", product.getDescription());
-                intent.putExtra("price", prices);
                 intent.putExtra("imageCode", product.getImage());
                 context.startActivity(intent);
 
+                Toast.makeText(context.getApplicationContext(), "Presionando: "+ product.getName(), Toast.LENGTH_SHORT).show();
+
             }
         });
-
 
         return view;
 
