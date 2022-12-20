@@ -4,31 +4,48 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Products extends AppCompatActivity {
 
-    private Button btnPro1, btnPro2, btnPro3;
-    private TextView txtPro1, txtPro2, txtPro3, txtPriPro1, txtPriPro2, txtPriPro3;
+    private Button btnDetPro;
+    private TextView txtProName, txtPriPro, txtDesPro;
+    private ImageView imgDetPro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products);
+        setContentView(R.layout.activity_product_details);
 
-        btnPro1 = (Button) findViewById(R.id.btnPro1);
-        btnPro2 = (Button) findViewById(R.id.btnPro2);
-        btnPro3 = (Button) findViewById(R.id.btnPro3);
+        btnDetPro = (Button) findViewById(R.id.btnDetPro);
 
-        txtPro1 = (TextView) findViewById(R.id.txtPro1);
-        txtPro2 = (TextView) findViewById(R.id.txtPro2);
-        txtPro3 = (TextView) findViewById(R.id.txtPro3);
-        txtPriPro1 = (TextView) findViewById(R.id.txtPriPro1);
-        txtPriPro2 = (TextView) findViewById(R.id.txtPriPro2);
-        txtPriPro3 = (TextView) findViewById(R.id.txtPriPro3);
+        txtProName = (TextView) findViewById(R.id.txtProName);
+        txtPriPro = (TextView) findViewById(R.id.txtPriPro);
+        txtDesPro = (TextView) findViewById(R.id.txtDesPro);
 
-        btnPro1.setOnClickListener(view -> {
+        imgDetPro = (ImageView) findViewById(R.id.imgDetPro);
+
+        Intent intentIn = getIntent();
+        txtProName.setText(intentIn.getStringExtra("name"));
+        txtDesPro.setText(intentIn.getStringExtra("description"));
+        txtPriPro.setText(intentIn.getStringExtra("price"));
+        //int codeImage = intentIn.getIntExtra("image", 0);
+        //imgDetPro.setImageResource(codeImage);
+
+        btnDetPro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ProductDetails.class);
+                startActivity(intent);
+            }
+        });
+    }
+}
+
+        /*btnPro1.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), ProductDetails.class);
             intent.putExtra("name", txtPro1.getText().toString());
             intent.putExtra("price", txtPriPro1.getText().toString());
@@ -56,6 +73,5 @@ public class Products extends AppCompatActivity {
             intent.putExtra("imageCode", R.drawable.product3);
             intent.putExtra("imageCodeBlank", R.drawable.blank_image);
             startActivity(intent);
-        });
-    }
-}
+        });*/
+

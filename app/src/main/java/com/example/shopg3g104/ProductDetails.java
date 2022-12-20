@@ -3,45 +3,50 @@ package com.example.shopg3g104;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
-public class ProductDetails extends AppCompatActivity {
+import com.example.shopg3g104.Adapters.ProductAdapter;
+import com.example.shopg3g104.DB.DBHelper;
+import com.example.shopg3g104.Entities.Product;
+import com.example.shopg3g104.Services.ProductService;
+import com.example.shopg3g104.R;
 
-    private Button btnDetPro;
-    private TextView txtProName, txtDetPro, txtDesPro, txtPriPro;
-    private ImageView imgDetPro;
+
+import java.util.ArrayList;
+
+public class ProductDetails extends AppCompatActivity {
+    private DBHelper dbHelper;
+    private ProductService productService;
+    private ListView listViewProducts;
+    private ProductAdapter productAdapter;
+    private ArrayList<Product> arrayProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_details);
+        setContentView(R.layout.activity_products);
 
-        btnDetPro = (Button) findViewById(R.id.btnDetPro);
-        txtProName = (TextView) findViewById(R.id.txtProName);
-        txtDetPro = (TextView) findViewById(R.id.txtDetPro);
-        txtDesPro = (TextView) findViewById(R.id.txtDesPro);
-        txtPriPro = (TextView) findViewById(R.id.txtPriPro);
-        imgDetPro = (ImageView) findViewById(R.id.imgDetPro);
+        arrayProducts = new ArrayList<>();
+        try {
+            dbHelper = new DBHelper(this);
+            productService = new ProductService();
+            Cursor cursor = dbHelper.getData();
+            arrayProducts = productService.cursorToArray(cursor);
+        }catch (Exception e){
+            Log.e("Database", e.toString());
+        }
 
-        Intent intendIn = getIntent();
-        txtProName.setText(intendIn.getStringExtra("name"));
-        txtPriPro.setText(intendIn.getStringExtra("price"));
-        txtDesPro.setText(intendIn.getStringExtra("description"));
+        listViewProducts = (ListView) findViewById(R.id.listViewProducts);
 
-        int imageCodeBlank = intendIn.getIntExtra("imageCodeBlank", 0);
-        int codeImage = intendIn.getIntExtra("imageCode", imageCodeBlank);
-        imgDetPro.setImageResource(codeImage);
-
-        btnDetPro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Products.class);
-                startActivity(intent);
-            }
-        });
+        productAdapter = new ProductAdapter(this, arrayProducts);
+        listViewProducts.setAdapter(productAdapter);
     }
 }
+

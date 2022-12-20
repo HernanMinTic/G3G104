@@ -26,7 +26,12 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
+            <ListView
+                android:id="@+id/listViewProducts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!-- <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -157,7 +162,7 @@
                     android:layout_weight="1"
                     android:text="@string/btnPro3" />
 
-            </LinearLayout>
+            </LinearLayout> -->!
         </LinearLayout>
 
     </LinearLayout>
