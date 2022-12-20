@@ -38,7 +38,7 @@ public class Products extends AppCompatActivity {
     private ProductService productService;
     private ListView listViewProducts;
     private ArrayList<Product> arrayProducts;
-    private ProductAdapter productAdapter;
+    private ProductAdapter ProductAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
