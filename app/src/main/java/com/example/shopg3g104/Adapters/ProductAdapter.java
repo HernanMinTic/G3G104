@@ -2,6 +2,8 @@ package com.example.shopg3g104.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,25 +15,29 @@ import android.widget.Toast;
 
 import com.example.shopg3g104.Entities.Product;
 import com.example.shopg3g104.ProductDetails;
+import com.example.shopg3g104.Products;
 import com.example.shopg3g104.R;
 
 import java.util.ArrayList;
 
-public class ProductAdapter  extends BaseAdapter {
-    private Context context;
-    private ArrayList<Product> arrayProductos;
+public class ProductAdapter extends BaseAdapter {
 
-    public ProductAdapter(Context context, ArrayList<Product> arrayProductos) {
+    private Context context;
+    private ArrayList<Product> arrayProducts;
+
+    public ProductAdapter(Context context, ArrayList<Product> arrayProducts) {
         this.context = context;
-        this.arrayProductos = arrayProductos;
+        this.arrayProducts = arrayProducts;
     }
 
     @Override
-    public int getCount() {return this.arrayProductos.size();}
+    public int getCount() {
+        return arrayProducts.size();
+    }
 
     @Override
     public Object getItem(int i) {
-        return this.arrayProductos.get(i);
+        return arrayProducts.get(i);
     }
 
     @Override
@@ -44,37 +50,53 @@ public class ProductAdapter  extends BaseAdapter {
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
         view = layoutInflater.inflate(R.layout.product_template, null);
 
+        Button btnProTem = (Button) view.findViewById(R.id.btnProTem);
+        TextView txtNamProTem = (TextView) view.findViewById(R.id.txtNamProTem);
+        TextView txtDesProTem = (TextView) view.findViewById(R.id.txtDesProTem);
+        TextView txtPriProTem = (TextView) view.findViewById(R.id.txtPriProTem);
+        ImageView imgProTem = (ImageView) view.findViewById(R.id.imgProTem);
 
+        Product product = arrayProducts.get(i);
 
-        ImageView imageProduct1 = (ImageView) view.findViewById(R.id.imageProducto);
-        TextView textNameProduct1 = (TextView) view.findViewById(R.id.textNameProducto);
-        TextView textDescriptionProduct1 = (TextView) view.findViewById(R.id.textDescriptionProducto);
-        TextView textPrinceProduct1 = (TextView) view.findViewById(R.id.textPrinceProducto);
+        txtNamProTem.setText(product.getName());
+        txtDesProTem.setText(product.getDescription());
+        txtPriProTem.setText(String.valueOf(product.getPrice()));
 
-        Product product = arrayProductos.get(i);
+        byte[] image = product.getImage();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+        imgProTem.setImageBitmap(bitmap);
 
-        imageProduct1.setImageResource(product.getImage());
-        textNameProduct1.setText(product.getName());
-        textDescriptionProduct1.setText(product.getDescription());
-        int Col = product.getPrice() *5000;
-        int Usd = product.getPrice();
-        String prices = "Pesos: "+Col+" - "+ "USD: "+Usd;
-        textPrinceProduct1.setText(prices);
-        imageProduct1.setOnClickListener(new View.OnClickListener() {
+        imgProTem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context.getApplicationContext(), ProductDetails.class);
-                intent.putExtra("name", product.getName());
-                intent.putExtra("description", product.getDescription());
-                intent.putExtra("price", prices);
-                intent.putExtra("imageCode", product.getImage());
+                intent.putExtra("id", String.valueOf(product.getId()));
                 context.startActivity(intent);
-
             }
         });
 
+        btnProTem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context.getApplicationContext(), ProductDetails.class);
+                intent.putExtra("id", String.valueOf(product.getId()));
+                context.startActivity(intent);
+            }
+        });
+
+    /*setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ProductDetails.class);
+                Toast.makeText(context.getApplicationContext(), "Presionado: "+ product.getName(), Toast.LENGTH_SHORT).show();
+                intent.putExtra("name", product.getName());
+                intent.putExtra("description", product.getDescription());
+                intent.putExtra("price", String.valueOf(product.getPrice()));
+                intent.putExtra("image", product.getImage());
+                context.startActivity(intent);
+            }
+        });*/
 
         return view;
-
     }
 }

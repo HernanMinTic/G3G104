@@ -1,26 +1,23 @@
 package com.example.shopg3g104.Entities;
 
-import com.example.shopg3g104.Products;
+public class Product {
 
-public class Product extends Products {
-    private int image;
+    private int id;
     private String name;
     private String description;
     private int price;
+    private byte[] image;
 
-    public Product(int image, String name, String description, int price) {
-        this.image = image;
+    public Product(int id, String name, String description, int price, byte[] image) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-    }
-
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
         this.image = image;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -45,5 +42,13 @@ public class Product extends Products {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }
