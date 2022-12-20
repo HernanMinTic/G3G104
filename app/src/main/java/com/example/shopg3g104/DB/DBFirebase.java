@@ -33,9 +33,9 @@ public class DBFirebase {
         this.db = FirebaseFirestore.getInstance();
     }
 
-    /*public void ProductService(ProductService productService) {
+    public void ProductService(ProductService productService) {
         this.productService = productService;
-    }*/
+    }
 
     public void insertData(Product prod){
         Map<String, Object> product = new HashMap<>();

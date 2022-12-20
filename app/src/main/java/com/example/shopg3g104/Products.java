@@ -55,14 +55,14 @@ public class Products extends AppCompatActivity {
             //byte [] img = "".getBytes();
 
             productService = new ProductService();
-            Cursor cursor = dbHelper.getData();
-            arrayProducts = productService.cursorToArray(cursor);
+            //Cursor cursor = dbHelper.getData();
+            //arrayProducts = productService.cursorToArray(cursor);
             Toast.makeText(this, "Insert OK", Toast.LENGTH_SHORT).show();
         }catch(Exception e){
             Log.e("Database", e.toString());
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
         }
-        //dbFirebase.ProductService(productService);
+        dbFirebase.ProductService(productService);
         productAdapter = new ProductAdapter(this, arrayProducts);
 
         listViewProducts = (ListView) findViewById(R.id.listPro);
