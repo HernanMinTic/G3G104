@@ -62,15 +62,19 @@ public class ProductAdapter extends BaseAdapter {
         txtDesProTem.setText(product.getDescription());
         txtPriProTem.setText(String.valueOf(product.getPrice()));
 
-        byte[] image = product.getImage();
+        /*byte[] image = product.getImage();
         Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
-        imgProTem.setImageBitmap(bitmap);
+        imgProTem.setImageBitmap(bitmap);*/
 
         imgProTem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context.getApplicationContext(), ProductDetails.class);
                 intent.putExtra("id", String.valueOf(product.getId()));
+                intent.putExtra("name", String.valueOf(product.getName()));
+                intent.putExtra("description", String.valueOf(product.getDescription()));
+                intent.putExtra("price", String.valueOf(product.getPrice()));
+                intent.putExtra("image", String.valueOf(product.getImage()));
                 context.startActivity(intent);
             }
         });
@@ -80,22 +84,13 @@ public class ProductAdapter extends BaseAdapter {
             public void onClick(View view) {
                 Intent intent = new Intent(context.getApplicationContext(), ProductDetails.class);
                 intent.putExtra("id", String.valueOf(product.getId()));
+                intent.putExtra("name", String.valueOf(product.getName()));
+                intent.putExtra("description", String.valueOf(product.getDescription()));
+                intent.putExtra("price", String.valueOf(product.getPrice()));
+                intent.putExtra("image", String.valueOf(product.getImage()));
                 context.startActivity(intent);
             }
         });
-
-    /*setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, ProductDetails.class);
-                Toast.makeText(context.getApplicationContext(), "Presionado: "+ product.getName(), Toast.LENGTH_SHORT).show();
-                intent.putExtra("name", product.getName());
-                intent.putExtra("description", product.getDescription());
-                intent.putExtra("price", String.valueOf(product.getPrice()));
-                intent.putExtra("image", product.getImage());
-                context.startActivity(intent);
-            }
-        });*/
 
         return view;
     }
