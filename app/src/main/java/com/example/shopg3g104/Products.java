@@ -23,7 +23,15 @@ import com.example.shopg3g104.Services.ProductService;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+import com.example.shopg3g104.Adapters.ProductAdapter;
+import com.example.shopg3g104.Entities.Product;
+
+import java.util.ArrayList;
+
 public class Products extends AppCompatActivity {
+    private ListView listViewProduct;
+    private ArrayList<Product> arrayProductos;
+    private ProductAdapter productAdapter;
 
     private DBHelper dbHelper;
     private DBFirebase dbFirebase;
