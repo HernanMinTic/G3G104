@@ -2,7 +2,7 @@
     <string name="app_name">Listener</string>
 
     // Menu
-    <string name="menuFor">Form</string>
+    <string name="menuFor">Form to add</string>
 
     // Login, Register
     <string name="txtUser">User</string>
