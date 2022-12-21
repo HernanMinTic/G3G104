@@ -81,7 +81,9 @@ public class DBFirebase {
                                         document.getData().get("image").toString(),
                                         Boolean.valueOf(document.getData().get("deleted").toString()),
                                         productService.stringToDate(document.getData().get("createdAt").toString()),
-                                        productService.stringToDate(document.getData().get("updatedAt").toString())
+                                        productService.stringToDate(document.getData().get("updatedAt").toString()),
+                                        Double.parseDouble(document.getData().get("latitud").toString()),
+                                        Double.parseDouble(document.getData().get("longitud").toString())
                                 );
                             }
                             list.add(product);
@@ -93,7 +95,7 @@ public class DBFirebase {
                 }
             });
     }
-
+/*
     public Product getDataById(String id){
         final Product[] product = {null};
         db.collection("products")
@@ -124,7 +126,7 @@ public class DBFirebase {
                 });
         return product[0];
     }
-
+*/
     public void updateDataById(String id, String name, String description, String price, String image){
         db.collection("products")
                 .document(id)

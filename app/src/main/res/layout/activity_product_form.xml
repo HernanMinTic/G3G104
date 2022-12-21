@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:text="@string/txtFor"
         android:gravity="center"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -142,13 +143,36 @@
                     android:text="" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/btnAdd" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/btnAdd" />
+
+                <TextView
+                    android:id="@+id/Latitud"
+                    android:layout_width="10sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Latitude:" />
+                <TextView
+                    android:id="@+id/Longitud"
+                    android:layout_width="10sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Length:" />
+
+
+            </LinearLayout>
+
+
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

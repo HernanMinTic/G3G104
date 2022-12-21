@@ -52,5 +52,5 @@ public class Maps extends AppCompatActivity {
         MapEventsOverlay mapEventsOverlay = new MapEventsOverlay(this, mapEventsReceiver);
         map.getOverlays().add(mapEventsOverlay);
 
-    };
+    }
 }

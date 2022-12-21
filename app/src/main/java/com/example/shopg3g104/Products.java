@@ -78,9 +78,21 @@ public class Products extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
         switch (item.getItemId()){
             case R.id.actionFor:
-                Intent intent = new Intent(getApplicationContext(), ProductForm.class);
+                intent = new Intent(getApplicationContext(), ProductForm.class);
+                startActivity(intent);
+                return true;
+            case R.id.actionMap:
+                intent = new Intent(getApplicationContext(), Maps.class);
+                ArrayList<String> latitudes = new ArrayList<>();
+                ArrayList<String> longitudes = new ArrayList<>();
+
+
+
+                intent.putStringArrayListExtra("latitudes", latitudes);
+                intent.putStringArrayListExtra("longitudes", longitudes);
                 startActivity(intent);
                 return true;
             default:
