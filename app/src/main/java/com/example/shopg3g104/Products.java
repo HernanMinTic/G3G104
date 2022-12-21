@@ -89,7 +89,10 @@ public class Products extends AppCompatActivity {
                 ArrayList<String> latitudes = new ArrayList<>();
                 ArrayList<String> longitudes = new ArrayList<>();
 
-
+                for(int i=0; i<arrayProducts.size(); i++){
+                    latitudes.add(String.valueOf(arrayProducts.get(i).getLatitud()));
+                    longitudes.add(String.valueOf(arrayProducts.get(i).getLongitud()));
+                }
 
                 intent.putStringArrayListExtra("latitudes", latitudes);
                 intent.putStringArrayListExtra("longitudes", longitudes);
