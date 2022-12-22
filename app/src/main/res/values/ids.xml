@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="textLatitudFormProduct" type="id" />
+    <item name="textLongitudFormPrpduct" type="id" />
+    <item name="Latitud" type="id" />
+    <item name="Longitud" type="id" />
+</resources>

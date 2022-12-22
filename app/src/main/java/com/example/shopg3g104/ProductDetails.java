@@ -9,10 +9,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.shopg3g104.DB.DBHelper;
+import com.example.shopg3g104.Entities.Product;
+import com.example.shopg3g104.Services.ProductService;
+
+import java.util.ArrayList;
+
 public class ProductDetails extends AppCompatActivity {
 
+    private DBHelper dbHelper;
+    private ProductService productService;
     private Button btnDetPro;
-    private TextView txtProName, txtDetPro, txtDesPro, txtPriPro;
+    private TextView txtNamPro, txtDesPro, txtPriPro;
     private ImageView imgDetPro;
 
     @Override
@@ -21,20 +29,20 @@ public class ProductDetails extends AppCompatActivity {
         setContentView(R.layout.activity_product_details);
 
         btnDetPro = (Button) findViewById(R.id.btnDetPro);
-        txtProName = (TextView) findViewById(R.id.txtProName);
-        txtDetPro = (TextView) findViewById(R.id.txtDetPro);
+        txtNamPro = (TextView) findViewById(R.id.txtNamPro);
         txtDesPro = (TextView) findViewById(R.id.txtDesPro);
         txtPriPro = (TextView) findViewById(R.id.txtPriPro);
         imgDetPro = (ImageView) findViewById(R.id.imgDetPro);
+        //dbHelper = new DBHelper(this);
+        productService = new ProductService();
 
-        Intent intendIn = getIntent();
-        txtProName.setText(intendIn.getStringExtra("name"));
-        txtPriPro.setText(intendIn.getStringExtra("price"));
-        txtDesPro.setText(intendIn.getStringExtra("description"));
+        Intent intentIn = getIntent();
+        String id = intentIn.getStringExtra("id");
 
-        int imageCodeBlank = intendIn.getIntExtra("imageCodeBlank", 0);
-        int codeImage = intendIn.getIntExtra("imageCode", imageCodeBlank);
-        imgDetPro.setImageResource(codeImage);
+        txtNamPro.setText(intentIn.getStringExtra("name"));
+        txtDesPro.setText(intentIn.getStringExtra("description"));
+        txtPriPro.setText(String.valueOf(intentIn.getStringExtra("price")));
+        //imgDetPro.setImageBitmap(productService.byteToBitmap(product.getImage()));
 
         btnDetPro.setOnClickListener(new View.OnClickListener() {
             @Override
