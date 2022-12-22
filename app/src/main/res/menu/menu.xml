@@ -24,6 +24,10 @@
                 android:id="@+id/actionFor"
                 app:showAsAction="ifRoom"
                 android:title="@string/menuFor" />
+            <item
+                android:id="@+id/actionMap"
+                app:showAsAction="ifRoom"
+                android:title="Map" />
         </menu>
     </item>
 

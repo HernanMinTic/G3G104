@@ -26,7 +26,6 @@ import java.util.Map;
 import kotlin.collections.UArraySortingKt;
 
 public class DBFirebase {
-
     private FirebaseFirestore db;
     private ProductService productService;
 
@@ -45,7 +44,10 @@ public class DBFirebase {
         product.put("deleted", prod.isDeleted());
         product.put("createdAt", prod.getCreatedAt());
         product.put("updatedAt", prod.getUpdatedAt());
+        product.put("latitud", prod.getLatitud());
+        product.put("longitud", prod.getLongitud());
 
+    // Add a new document with a generated ID
         db.collection("products")
             .add(product)
             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -69,23 +71,26 @@ public class DBFirebase {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
+                        Product product = null;
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Log.d(TAG, document.getId() + " => " + document.getData());
-                            Product product = null;
-                            if(!Boolean.valueOf(document.getData().get("deleted").toString())){
-                                product = new Product(
-                                        document.getData().get("id").toString(),
-                                        document.getData().get("name").toString(),
-                                        document.getData().get("description").toString(),
-                                        Integer.parseInt(document.getData().get("price").toString()),
-                                        document.getData().get("image").toString(),
-                                        Boolean.valueOf(document.getData().get("deleted").toString()),
-                                        productService.stringToDate(document.getData().get("createdAt").toString()),
-                                        productService.stringToDate(document.getData().get("updatedAt").toString())
-                                );
-                            }
-                            list.add(product);
-                        }
+                            product = null;
+                            //if(!Boolean.valueOf(document.getData().get("deleted").toString())){
+                            product = new Product(
+                                    document.getData().get("id").toString(),
+                                    document.getData().get("name").toString(),
+                                    document.getData().get("description").toString(),
+                                    Integer.parseInt(document.getData().get("price").toString()),
+                                    document.getData().get("image").toString(),
+                                    Boolean.valueOf(document.getData().get("deleted").toString()),
+                                    productService.stringToDate(document.getData().get("createdAt").toString()),
+                                    productService.stringToDate(document.getData().get("updatedAt").toString()),
+                                    Double.parseDouble(document.getData().get("latitud").toString()),
+                                    Double.parseDouble(document.getData().get("longitud").toString())
+                            );
+
+                        list.add(product);
+                    }
                         productAdapter.notifyDataSetChanged();
                     } else {
                         Log.w(TAG, "Error getting documents.", task.getException());

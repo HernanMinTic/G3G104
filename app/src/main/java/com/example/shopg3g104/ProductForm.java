@@ -1,5 +1,7 @@
 package com.example.shopg3g104;
 
+import static com.example.shopg3g104.R.id.textLatitudFormProduct;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -7,16 +9,19 @@ import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shopg3g104.DB.DBFirebase;
@@ -25,26 +30,37 @@ import com.example.shopg3g104.Entities.Product;
 import com.example.shopg3g104.Services.ProductService;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.osmdroid.config.Configuration;
+import org.osmdroid.events.MapEventsReceiver;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapController;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.MapEventsOverlay;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class ProductForm extends AppCompatActivity {
-
     private ProductService productService;
-    //private DBHelper dbHelper;
+    private DBHelper dbHelper;
     private DBFirebase dbFirebase;
     private Button btnAdd, btnGet, btnUpd, btnDel;
     private EditText editTxtNamFor, editTxtDesFor, editTxtPriFor, editTxtId;
     private ImageView imgToAdd;
+    private TextView textLatitudFormProduct, textLongitudFormProduct;
+    private MapView map;
+    private MapController mapController;
     ActivityResultLauncher<String> content;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_form);
-
+        Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
         btnAdd = (Button) findViewById(R.id.btnAdd);
         btnGet = (Button) findViewById(R.id.btnGet);
         btnUpd = (Button) findViewById(R.id.btnUpd);
@@ -54,9 +70,40 @@ public class ProductForm extends AppCompatActivity {
         editTxtDesFor = (EditText) findViewById(R.id.editTxtDesFor);
         editTxtPriFor = (EditText) findViewById(R.id.editTxtPriFor);
         imgToAdd = (ImageView) findViewById(R.id.imgAddFor);
+        textLatitudFormProduct = (TextView) findViewById(R.id.textLatitudFormProduct);
+        textLongitudFormProduct =(TextView) findViewById(R.id.textLongitudFormPrpduct);
 
-        //byte[] img = "".getBytes(StandardCharsets.UTF_8);
+        map = (MapView) findViewById(R.id.mapForm);
+        map.setTileSource(TileSourceFactory.MAPNIK);
 
+        map.setBuiltInZoomControls(true);
+        mapController = (MapController) map.getController();
+
+        GeoPoint colombia = new GeoPoint(4.570868, -74.297333);
+
+
+        mapController.setCenter(colombia);
+        mapController.setZoom(12);
+        map.setMultiTouchControls(true);
+
+        MapEventsReceiver mapEventsReceiver = new MapEventsReceiver() {
+            @Override
+            public boolean singleTapConfirmedHelper(GeoPoint p) {
+                textLatitudFormProduct.setText(String.valueOf(p.getLatitude()));
+                textLongitudFormProduct.setText(String.valueOf(p.getLongitude()));
+                return false;
+            }
+
+            @Override
+            public boolean longPressHelper(GeoPoint p) {
+                return false;
+            }
+        };
+        MapEventsOverlay mapEventsOverlay = new MapEventsOverlay(this, mapEventsReceiver);
+        map.getOverlays().add(mapEventsOverlay);
+
+
+        byte[] img = "".getBytes(StandardCharsets.UTF_8);
         try {
             productService = new ProductService();
             //dbHelper = new DBHelper(this);
@@ -65,7 +112,7 @@ public class ProductForm extends AppCompatActivity {
             Log.e("DB",e.toString());
         }
 
-        /*content = registerForActivityResult(
+        content = registerForActivityResult(
                 new ActivityResultContracts.GetContent(),
                 new ActivityResultCallback<Uri>() {
                     @Override
@@ -79,7 +126,7 @@ public class ProductForm extends AppCompatActivity {
                         }
                     }
                 }
-        );*/
+        );
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +135,12 @@ public class ProductForm extends AppCompatActivity {
                     Product product = new Product(
                             editTxtNamFor.getText().toString(),
                             editTxtDesFor.getText().toString(),
-                            Integer.parseInt(editTxtPriFor.getText().toString().trim()),
-                            ""
+                            Integer.parseInt(editTxtPriFor.getText().toString()),
+                            "",
+                            Double.parseDouble(textLatitudFormProduct.getText().toString().trim()),
+                            Double.parseDouble(textLongitudFormProduct.getText().toString().trim())
+
+
                             //productService.imageViewToByte(imgToAdd)
                     );
                     //dbHelper.insertData(product);

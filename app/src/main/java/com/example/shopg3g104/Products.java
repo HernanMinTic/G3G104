@@ -23,14 +23,22 @@ import com.example.shopg3g104.Services.ProductService;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+import com.example.shopg3g104.Adapters.ProductAdapter;
+import com.example.shopg3g104.Entities.Product;
+
+import java.util.ArrayList;
+
 public class Products extends AppCompatActivity {
+    private ListView listViewProduct;
+    private ArrayList<Product> arrayProductos;
+    private ProductAdapter productAdapter;
 
     private DBHelper dbHelper;
     private DBFirebase dbFirebase;
     private ProductService productService;
     private ListView listViewProducts;
     private ArrayList<Product> arrayProducts;
-    private ProductAdapter productAdapter;
+    private ProductAdapter ProductAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +78,24 @@ public class Products extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
         switch (item.getItemId()){
             case R.id.actionFor:
-                Intent intent = new Intent(getApplicationContext(), ProductForm.class);
+                intent = new Intent(getApplicationContext(), ProductForm.class);
+                startActivity(intent);
+                return true;
+            case R.id.actionMap:
+                intent = new Intent(getApplicationContext(), Maps.class);
+                ArrayList<String> latitudes = new ArrayList<>();
+                ArrayList<String> longitudes = new ArrayList<>();
+
+                for(int i=0; i<arrayProducts.size(); i++){
+                    latitudes.add(String.valueOf(arrayProducts.get(i).getLatitud()));
+                    longitudes.add(String.valueOf(arrayProducts.get(i).getLongitud()));
+                }
+
+                intent.putStringArrayListExtra("latitudes", latitudes);
+                intent.putStringArrayListExtra("longitudes", longitudes);
                 startActivity(intent);
                 return true;
             default:

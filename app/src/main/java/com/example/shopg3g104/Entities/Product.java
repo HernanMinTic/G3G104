@@ -13,8 +13,23 @@ public class Product {
     private boolean deleted;
     private Date createdAt;
     private Date updatedAt;
+    private Double latitud;
+    private Double longitud;
 
-    public Product(String id, String name, String description, int price, String image) {
+    public Product(String id, String name, String description, int price, String image, boolean deleted, Date createdAt, Date updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.image = image;
+        this.deleted = deleted;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public Product(String id, String name, String description, int price, String image, Double latitud, Double longitud) {
+        this. latitud = latitud;
+        this.longitud = longitud;
         this.id = id;
         this.name = name;
         this.description = description;
@@ -22,7 +37,9 @@ public class Product {
         this.image = image;
     }
 
-    public Product(String id, String name, String description, int price, String image, boolean deleted, Date createdAt, Date updatedAt) {
+    public Product(String id, String name, String description, int price, String image, boolean deleted, Date createdAt, Date updatedAt, Double latitud, Double longitud) {
+        this. latitud = latitud;
+        this.longitud = longitud;
         this.id = id;
         this.image = image;
         this.name = name;
@@ -33,7 +50,9 @@ public class Product {
         this.updatedAt = updatedAt;
     }
 
-    public Product(String name, String description, int price, String image) {
+    public Product(String name, String description, int price, String image, Double latitud, Double longitud) {
+        this. latitud = latitud;
+        this.longitud = longitud;
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
@@ -56,6 +75,27 @@ public class Product {
 
     public String getId() {
         return id;
+
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(Double latitud) {
+        this.latitud = latitud;
+    }
+
+    public Double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
     }
 
     public String getName() {

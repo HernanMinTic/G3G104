@@ -12,12 +12,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.shopg3g104.Entities.Product;
 import com.example.shopg3g104.ProductDetails;
 import com.example.shopg3g104.Products;
 import com.example.shopg3g104.R;
-
 import java.util.ArrayList;
 
 public class ProductAdapter extends BaseAdapter {
